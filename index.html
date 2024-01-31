@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+function showpage(pg) {
+    document.getElementById("jailbreak").style.display = "none";
+    document.getElementById("after").style.display = "none";
+    document.getElementById(pg).style.display = "block";
+}
+</script>
+<html>
+  <div id="jailbreak">
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <style>
+      body, html {
+        background: #239a96;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font: Arial 14px;
+      }
+      .title {
+        margin-top: 40px;
+        margin-left: 80px;
+        font-size: 45px;
+        font-family: "Impact", sans-serif;
+        color: #fff;
+        text-align: top;
+        
+      }
+      .subtitle {
+        
+        margin-left: 20px;
+        font-size: 20px;
+        color: #fff;
+        text-align: top;
+        font-family: "Impact", sans-serif;
+      }
+      .glow-on-hover {
+        margin-left: 100px; 
+        margin-top: 20px;
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+        font-family: monospace;
+    background: #966096;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 30px;
+}
+.checkbox.style-e {
+  margin-left: 110px; 
+  margin-top: 40px;
+  display: inline-block;
+  position: relative;
+  padding-left: 50px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.checkbox.style-e input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkbox.style-e input:checked ~ .checkbox__checkmark {
+  background-color: #d230f7;
+}
+.checkbox.style-e input:checked ~ .checkbox__checkmark:after {
+  left: 21px;
+}
+.checkbox.style-e:hover input ~ .checkbox__checkmark {
+  background-color: #eee;
+}
+.checkbox.style-e:hover input:checked ~ .checkbox__checkmark {
+  background-color: #d230f7;
+}
+.checkbox.style-e .checkbox__checkmark {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  height: 22px;
+  width: 40px;
+  background-color: #eee;
+  transition: background-color 0.25s ease;
+  border-radius: 11px;
+}
+.checkbox.style-e .checkbox__checkmark:after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  display: block;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: left 0.25s ease;
+}
+.checkbox.style-e .checkbox__body {
+  color: white;
+  line-height: 1.4;
+  font-size: 16px;
+  transition: color 0.25s ease;
+}
+      
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 15px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+      
+.console {
+      margin-left: 50px;
+  margin-top: 20px;
+      width: 300px;
+      background-color: rgba(0,0,0,.33);
+      border-radius: 10px;
+      padding: 10px;
+  font-family: monospace;
+    }
+
+    .console__header {}
+
+    .console__title {
+      font-family: monospace;
+    }
+
+    .console__content {
+      font-family: monospace;
+
+    }
+
+    .console__author {
+      font-family: monospace;
+
+    }
+
+    .console__subtitle {
+      font-family: monospace;
+      font-size: 9px;
+      color: #fff;
+    } 
+    
+      .p {
+        margin-top: 40px;
+        margin-left: 20px;
+        font-size: 45px;
+        font-family: "Impact", sans-serif;
+        color: #d230f7;
+        text-align: top;
+      }
+
+    </style>
+    <script>
+      function getIOSVersion() {
+                const userAgent = window.navigator.userAgent;
+                const match = userAgent.match(/(iPad|iPhone|iPod)\s+OS\s+(\d+_+\d+)/);
+
+                if (match) {
+                    const version = match[2].replace(/_/g, '.');
+                    return version;
+                }
+
+                // Return null if the user agent doesn't match the pattern for iOS
+                return null;
+         
+      }
+      
+      
+        function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+      
+      
+      
+      
+        
+        async function jail() {
+          
+          
+          await sleep(800);
+          
+          fetch('https://ipapi.co/json/')
+  .then(d => d.json())
+  .then(d => document.querySelector('#ip').innerHTML = '[#] Client IP: '+d.ip);
+          await sleep(2000);
+          alert('also i have ur iOS version: ' + getIOSVersion())
+          
+        }
+      
+    </script>
+  </head>
+  <body>
+    
+    <div class="title">
+      гет айпи хтмл
+    </div>
+    <div class="console">
+      <div class="console__subtitle">
+        [#] Made for good boys by @kryyaasoft
+      </div>
+      
+      <div class="console__subtitle" id="ios">
+        
+      </div>
+      <div class="console__subtitle" id="log">
+        -------------------------------------------
+      </div>
+      <div class="console__subtitle" id="ip">
+        
+      </div>
+       
+    </div>
+     <button class="butt" id="butt_up" onclick ="jail()">Get IP adress</button>
+  </body>
+  </div>
+  <style>
+    #after {
+      transition: all 1s ease-out;
+    }
+  </style>
+  <div id="after">
+    <style>
+      .after_title {
+        font-family: monospace;
+        font-size: 30px;
+        margin-top: 40px;
+        margin-left: 20px;
+        color: #fff;
+        border: 20px
+        
+      }
+      #main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	background: rgb(131, 58, 180);
+	background: linear-gradient(-45deg, #4158D0, #e560dc, #ffb374, #ef5f5f, #d840b6);
+	background-size: 400% 400%;
+	animation: bg 12s ease infinite;
+	width: 100%;
+	height: 100%;
+}
+@keyframes bg {
+	0%{
+		background-position: 0% 50%;
+	}
+	50%{
+		background-position: 100% 100%;
+	}
+	100%{
+		background-position: 0% 50%;
+	}
+}
+      .butt {
+        margin-top:4%;
+        color:#3982ff;
+        background:rgba(250,250,250,.78);
+        width:35%;
+        height:60px;
+        margin-left:10%;
+        border:none;
+        border-radius:20px;
+      }
+       #butt_up {
+        margin-top:4%;
+        color:#3982ff;
+        background:rgba(250,250,250,.78);
+        width:80%;
+        height:60px;
+        margin-left:10%;
+        border:none;
+        border-radius:20px;
+         margin-bottom:2px;
+      }
+    </style>
+    <div id="main">
+    
+    <div class="after_title">
+      jailbreak was successful, respring device with FixAll / instaSpring
+    </div>
+    
+    </div>
+     <button class="butt" id="butt_up" onclick ="jail">Jailbreeeak</button>
+  </div>
+</html>
+
+<script>
+showpage("jailbreak")
+</script>
